@@ -1,11 +1,4 @@
-#
-#-------------------------------------------------------------#
-#  创建者：https://v2rayse.com
-#  创建时间：2022-12-13 15:39:52
-#  模版：v2rayse默认模版
-#  节点数量：4
-#-------------------------------------------------------------#
-#
+# HuLianWang
 port: 7890
 socks-port: 7891
 allow-lan: true
@@ -13,67 +6,109 @@ mode: Rule
 log-level: info
 external-controller: 0.0.0.0:9090
 proxies:
-  - {"type":"http","name":"http_proxy","server":"127.0.0.1","port":1080,"udp":true}
-  - {"type":"vmess","name":"Level2Singapore01","server":"49.7.208.101","port":"39922","uuid":"31b24606-38ca-4af9-8e0a-6448283e6ff6","alterId":"0","cipher":"auto","network":"tcp"}
-  - {"type":"vmess","name":"Level2Singapore02","server":"49.7.208.101","port":"42873","uuid":"31b24606-38ca-4af9-8e0a-6448283e6ff6","alterId":"0","cipher":"auto","network":"tcp"}
-  - {"type":"vmess","name":"Level2Singapore03","server":"49.7.208.101","port":"40236","uuid":"31b24606-38ca-4af9-8e0a-6448283e6ff6","alterId":"0","cipher":"auto","network":"tcp"}
+  - {"type":"ss","name":"剩余流量：200GB","server":"42.157.129.32","port":53904,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"香港HE+HKIXPlus","server":"120.240.236.28","port":40215,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"香港|HE+HKIXPlus","server":"120.240.236.28","port":22620,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"香港|HE+HKIX","server":"120.240.236.28","port":19765,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"日本流媒体x1","server":"120.240.236.28","port":24383,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"马来西亚家宽原生IPx1","server":"120.240.236.28","port":30559,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"美国流媒体x1","server":"120.240.236.28","port":59721,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"美国流媒体2x1","server":"120.240.236.28","port":34479,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"法国流媒体x1","server":"120.240.236.28","port":56081,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
+  - {"type":"ss","name":"法国流媒体2x1","server":"120.240.236.28","port":58848,"cipher":"chacha20-ietf-poly1305","password":"26977314-2859-4f28-a3d1-4e435ee61cfe"}
 proxy-groups:
   - name: 🚀 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
       - DIRECT
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     proxies:
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: 🌍 国外媒体
     type: select
     proxies:
       - 🚀 节点选择
       - ♻️ 自动选择
       - 🎯 全球直连
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: 📲 电报信息
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: Ⓜ️ 微软服务
     type: select
     proxies:
       - 🎯 全球直连
       - 🚀 节点选择
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: 🍎 苹果服务
     type: select
     proxies:
       - 🚀 节点选择
       - 🎯 全球直连
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -96,10 +131,16 @@ proxy-groups:
       - 🚀 节点选择
       - 🎯 全球直连
       - ♻️ 自动选择
-      - http_proxy
-      - Level2Singapore01
-      - Level2Singapore02
-      - Level2Singapore03
+      - 剩余流量：200GB
+      - 香港HE+HKIXPlus
+      - 香港|HE+HKIXPlus
+      - 香港|HE+HKIX
+      - 日本流媒体x1
+      - 马来西亚家宽原生IPx1
+      - 美国流媒体x1
+      - 美国流媒体2x1
+      - 法国流媒体x1
+      - 法国流媒体2x1
 rules:
   - DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连
   - DOMAIN-SUFFIX,ip6-localhost,🎯 全球直连
