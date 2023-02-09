@@ -1,7 +1,9 @@
 {
-"spider": "http://xn--4bra.live/jar/ggtv0802.jar",
-"sites": [          
 
+
+
+"sites": [    
+    {
     "key":"ms4nii",
     "name":"美少女资源",
     "type":0,
