@@ -49,7 +49,7 @@ proxy-providers:
   jichang3: 
     type: http
     path: ./profiles/1642516276761.yml
-    url: https://XXXX
+    url: https://tiandan.org/api/v1/client/subscribe?token=14477986ed68b107413aa47ba9fa5c7d
     interval: 36000
     health-check:
       enable: true
