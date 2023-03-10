@@ -1,0 +1,269 @@
+port: 7890
+socks-port: 7891
+allow-lan: false
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: true
+external-controller: 127.0.0.1:9090
+#dns: #DNS 设置一般无需打开，如果你坚持想用，请确保你知道在做什么
+  #enable: true
+  #listen: 0.0.0.0:53
+  #ipv6: false
+  #default-nameserver:
+    #- 223.5.5.5
+    #- 119.29.29.29
+  #enhanced-mode: redir-host
+  #nameserver:
+    #- https://doh.pub/dns-query
+    #- https://dns.alidns.com/dns-query
+  #fallback:
+    #- https://1.1.1.1/dns-query
+    #- https://dns.google/dns-query
+  #fallback-filter:
+    #geoip: true
+    #geoip-code: CN
+    #ipcidr:
+      #- 240.0.0.0/4
+
+proxy-providers:
+  jichang1:
+    type: http
+    path: ./profiles/1626513136686.yml
+    url: https://sub2038.kaochangsubscribe.xyz/api/v1/client/subscribe?token=119f4c9595cefd97c2bcf67efdb23ad0
+    interval: 36000
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 3600
+  jichang2:
+    type: http
+    path: ./profiles/1626513102225.yml
+    url: https://install.sdconfig.pro/api/v1/client/subscribe?token=B0gGq53kmbUYgrfS&flag
+    interval: 36000
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 3600
+
+  jichang3: 
+    type: http
+    path: ./profiles/1642516276761.yml
+    url: https://XXXX
+    interval: 36000
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 3600
+
+
+# proxy provider end
+proxies:
+    # socks5
+  - name: windowsServer
+    type: socks5
+    server: 10.127.78.177
+    port: 7890
+    # username: username
+    # password: password
+    # tls: true
+    # skip-cert-verify: true
+    # udp: true
+
+
+  - {"name":"菲律宾独享ip1","type":"ss","server":"sph30a.superstrings.top","port":39330,"password":"294b8d95-2302-4b95-8595-d1870305cedb","cipher":"aes-256-gcm"}
+
+
+proxy-groups:
+  - name: Proxies
+    type: select
+    proxies:
+      - 自动选择
+      - 故障转移
+      - 机场节点
+      - 手动节点
+
+  - name: 手动节点
+    type: select
+    proxies:
+      - 菲律宾独享ip1
+
+  - name: 机场节点
+    type: select
+    proxies:
+     - 机场1
+     - 机场2
+     - 机场3
+
+
+
+  - name: 机场1
+    type: select
+    use:
+     - jichang1
+    proxies:
+     - 自动选择
+
+  - name: 机场2
+    type: select
+    use:
+     - jichang2
+    proxies:
+     - 自动选择
+
+
+  - name: 机场3
+    type: select
+    use:
+     - jichang3
+    proxies:
+     - 自动选择
+
+  - name: 故障转移
+    type: fallback
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 7200
+    proxies:
+     - 机场1
+     - 机场2
+     - 机场3
+
+
+  - name: 自动选择
+    type: url-test
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    use:
+      - jichang1
+      - jichang2
+      - jichang3 
+
+
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  icloud:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt"
+    path: ./ruleset/icloud.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  google:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/private.yaml
+    interval: 86400
+
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+
+  greatfire:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/greatfire.txt"
+    path: ./ruleset/greatfire.yaml
+    interval: 86400
+
+  tld-not-cn:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+    path: ./ruleset/tld-not-cn.yaml
+    interval: 86400
+
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
+
+
+rules:
+ # 这些是自定义规则，想要的可以继续加。
+ - DOMAIN-SUFFIX,cnki.net,DIRECT
+ - DOMAIN-SUFFIX,ieee.org,DIRECT
+ - DOMAIN-SUFFIX,acm.org,DIRECT
+ - DOMAIN-SUFFIX,imgtu.com,DIRECT
+ - DOMAIN-SUFFIX,dpdk.org,DIRECT
+ - DOMAIN-SUFFIX,freenom.com,DIRECT
+ - DOMAIN-SUFFIX,sciencedirect.com,DIRECT
+ - DOMAIN-SUFFIX,springer.com,DIRECT
+ - RULE-SET,applications,DIRECT
+ - DOMAIN,clash.razord.top,DIRECT
+ - DOMAIN,yacd.haishan.me,DIRECT
+ # 下面的规则是通过上面的rule-provider来确定的
+ - RULE-SET,private,DIRECT
+ - RULE-SET,reject,REJECT
+ - RULE-SET,icloud,DIRECT
+ - RULE-SET,apple,DIRECT
+ - RULE-SET,google,DIRECT
+ - RULE-SET,proxy,Proxies
+ - RULE-SET,direct,DIRECT
+ - RULE-SET,lancidr,DIRECT
+ - RULE-SET,cncidr,DIRECT
+ - RULE-SET,telegramcidr,Proxies
+ - GEOIP,,DIRECT
+ - GEOIP,CN,DIRECT
+ - MATCH,Proxies
