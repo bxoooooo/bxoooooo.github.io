@@ -30,16 +30,16 @@ proxy-providers:
   jichang1:
     type: http
     path: ./profiles/1626513136686.yml
-    url: https://sub2038.kaochangsubscribe.xyz/api/v1/client/subscribe?token=119f4c9595cefd97c2bcf67efdb23ad0
+    url: https://xxxx
     interval: 36000
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: http://xxxx
       interval: 3600
   jichang2:
     type: http
     path: ./profiles/1626513102225.yml
-    url: https://install.sdconfig.pro/api/v1/client/subscribe?token=B0gGq53kmbUYgrfS&flag
+    url: xxxx
     interval: 36000
     health-check:
       enable: true
