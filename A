@@ -71,7 +71,7 @@ proxies:
     # udp: true
 
 
-  - {"name":"菲律宾独享ip1","type":"ss","server":"sph30a.superstrings.top","port":39330,"password":"294b8d95-2302-4b95-8595-d1870305cedb","cipher":"aes-256-gcm"}
+  - {"name":
 
 
 proxy-groups:
@@ -86,7 +86,7 @@ proxy-groups:
   - name: 手动节点
     type: select
     proxies:
-      - 菲律宾独享ip1
+      - 
 
   - name: 机场节点
     type: select
